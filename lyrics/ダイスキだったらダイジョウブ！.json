@@ -9,11 +9,11 @@
   "translation_timestamp": 1700643282,
   "romanization_timestamp": 1700643242,
   "files": {
-    "qrc": "/Users/jiiong/Documents/ComputerScience/web-design-projects/yomikana/lyrics/ダイスキだったらダイジョウブ！.qrc",
-    "lrc": "/Users/jiiong/Documents/ComputerScience/web-design-projects/yomikana/lyrics/ダイスキだったらダイジョウブ！.lrc",
-    "translation": "/Users/jiiong/Documents/ComputerScience/web-design-projects/yomikana/lyrics/ダイスキだったらダイジョウブ！.translation.lrc",
-    "romanization": "/Users/jiiong/Documents/ComputerScience/web-design-projects/yomikana/lyrics/ダイスキだったらダイジョウブ！.roma.lrc"
+    "qrc": "lyrics/ダイスキだったらダイジョウブ！.qrc",
+    "lrc": "lyrics/ダイスキだったらダイジョウブ！.lrc",
+    "translation": "lyrics/ダイスキだったらダイジョウブ！.translation.lrc",
+    "romanization": "lyrics/ダイスキだったらダイジョウブ！.roma.lrc"
   },
   "unavailable_tracks": [],
-  "metadata_file": "/Users/jiiong/Documents/ComputerScience/web-design-projects/yomikana/lyrics/ダイスキだったらダイジョウブ！.json"
+  "metadata_file": "lyrics/ダイスキだったらダイジョウブ！.json"
 }

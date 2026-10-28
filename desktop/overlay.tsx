@@ -98,7 +98,7 @@ export default function Overlay() {
       <button type="button" aria-label="关闭悬浮歌词" onClick={() => perform(invoke("set_overlay_visible", { visible: false }))}>×</button>
     </div>
     <div className="subtitle-copy">
-      <p className="subtitle-japanese" lang="ja">{subtitle.japanese || (subtitle.title ? "♪" : "请在 Yomikana 中播放歌曲")}</p>
+      <p className="subtitle-japanese" lang="ja">{subtitle.japanese || (subtitle.title ? "♪" : "请在 NumazuMusic 中播放歌曲")}</p>
       {translatedText && <p className="subtitle-translation" lang="zh-CN">{translatedText}</p>}
     </div>
     {(error || subtitle.error) && <p className="subtitle-error" role="status">{error || subtitle.error}</p>}

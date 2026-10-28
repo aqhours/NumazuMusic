@@ -9,11 +9,11 @@
   "translation_timestamp": 1688142456,
   "romanization_timestamp": 1680771744,
   "files": {
-    "qrc": "/private/tmp/yomikana-natsu-qq/夏の終わりの雨音が.qrc",
-    "lrc": "/private/tmp/yomikana-natsu-qq/夏の終わりの雨音が.lrc",
-    "translation": "/private/tmp/yomikana-natsu-qq/夏の終わりの雨音が.translation.lrc",
-    "romanization": "/private/tmp/yomikana-natsu-qq/夏の終わりの雨音が.roma.lrc"
+    "qrc": "imports/natsu-no-owari/夏の終わりの雨音が.qrc",
+    "lrc": "imports/natsu-no-owari/夏の終わりの雨音が.lrc",
+    "translation": "imports/natsu-no-owari/夏の終わりの雨音が.translation.lrc",
+    "romanization": "imports/natsu-no-owari/夏の終わりの雨音が.roma.lrc"
   },
   "unavailable_tracks": [],
-  "metadata_file": "/private/tmp/yomikana-natsu-qq/夏の終わりの雨音が.json"
+  "metadata_file": "imports/natsu-no-owari/夏の終わりの雨音が.json"
 }

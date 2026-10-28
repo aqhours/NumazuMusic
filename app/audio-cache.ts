@@ -1,4 +1,4 @@
-const AUDIO_CACHE_NAME = "yomikana-audio-v1";
+const AUDIO_CACHE_NAME = "numazumusic-audio-v1";
 
 export type AudioLoadSource = "cache" | "network-cached" | "network";
 

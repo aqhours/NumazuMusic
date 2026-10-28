@@ -8,14 +8,14 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 export const metadata: Metadata = {
-  title: "Yomikana｜Aqours 日语歌词读本",
+  title: "NumazuMusic｜Aqours 日语歌词读本",
   description: "在旋律里读懂 Aqours：逐字同步、日语分词、假名注音、罗马音与中文释义。",
   icons: { icon: { url: "/favicon.svg", type: "image/svg+xml" }, shortcut: "/favicon.svg" },
 };
 
 const themeBootScript = `(() => {
   try {
-    const saved = localStorage.getItem("yomikana-theme");
+    const saved = localStorage.getItem("numazumusic-theme");
     const theme = saved === "light" || saved === "dark"
       ? saved
       : "dark";

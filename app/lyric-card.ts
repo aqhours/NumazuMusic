@@ -153,7 +153,7 @@ export function renderLyricCard({ song, indices, language, theme, colors, cover 
   ctx.font = artistFont;
   const artistLines = wrapCardText(song.artist, metadataWidth, measure);
   const brandHeight = 14;
-  const wordmark = "NumaZu Music";
+  const wordmark = "NumazuMusic";
   ctx.textBaseline = "alphabetic";
   ctx.font = `900 40px ${brandFont}`;
   const sample = ctx.measureText(wordmark);

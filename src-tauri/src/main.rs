@@ -269,5 +269,5 @@ fn main() {
             }
         })
         .run(tauri::generate_context!())
-        .expect("Failed to run Yomikana");
+        .expect("Failed to run NumazuMusic");
 }

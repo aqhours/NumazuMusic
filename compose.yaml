@@ -1,11 +1,11 @@
-name: yomikana
+name: numazumusic
 
 services:
   web:
     build:
       context: .
       dockerfile: Dockerfile
-    image: aqhours-yomikana:latest
+    image: aqhours-numazumusic:latest
     restart: unless-stopped
     healthcheck:
       test:
@@ -20,9 +20,9 @@ services:
     networks:
       aqhours-web:
         aliases:
-          - yomikana-app
+          - numazumusic-app
     labels:
-      - com.aqhours.service=yomikana
+      - com.aqhours.service=numazumusic
 
 networks:
   aqhours-web:

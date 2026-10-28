@@ -95,7 +95,7 @@ const LyricCardEditor = memo(function LyricCardEditor({ song, coverColors, initi
     setSaving(true);
     setSaveStatus("");
     try {
-      const filename = `yomikana-${song.slug}-${language}.png`;
+      const filename = `numazumusic-${song.slug}-${language}.png`;
       if (isTauri()) {
         const path = await invoke<string>("save_lyric_card", { filename, png: Array.from(new Uint8Array(await currentPreview.blob.arrayBuffer())) });
         if (mountedRef.current) setSaveStatus(`已保存到下载文件夹：${path.split(/[\\/]/).pop()}`);
@@ -125,7 +125,7 @@ const LyricCardEditor = memo(function LyricCardEditor({ song, coverColors, initi
       onClose={(event) => { event.stopPropagation(); if (!event.currentTarget.open) onClose(); }}>
       <div className="lyric-card-editor" data-step={step}>
         <header className="card-editor-header">
-          <div><span className="card-editor-eyebrow">YOMIKANA / 歌词收藏</span><h2 id="lyric-card-title">把喜欢的歌词，留成卡片。</h2><p id="lyric-card-description">选几句触动你的歌词，保存这一刻的共鸣。</p></div>
+          <div><span className="card-editor-eyebrow">NumazuMusic / 歌词收藏</span><h2 id="lyric-card-title">把喜欢的歌词，留成卡片。</h2><p id="lyric-card-description">选几句触动你的歌词，保存这一刻的共鸣。</p></div>
           <button className="card-icon-button" type="button" onClick={() => dialogRef.current?.close()} aria-label="关闭歌词卡片"><X aria-hidden="true" /></button>
         </header>
         <div className="card-mobile-steps" role="group" aria-label="制作步骤">

@@ -9,11 +9,11 @@
   "translation_timestamp": 1700643708,
   "romanization_timestamp": 1700643661,
   "files": {
-    "qrc": "/private/tmp/yomikana-omoi-qq/想いよひとつになれ.qrc",
-    "lrc": "/private/tmp/yomikana-omoi-qq/想いよひとつになれ.lrc",
-    "translation": "/private/tmp/yomikana-omoi-qq/想いよひとつになれ.translation.lrc",
-    "romanization": "/private/tmp/yomikana-omoi-qq/想いよひとつになれ.roma.lrc"
+    "qrc": "imports/omoi-yo-hitotsu/想いよひとつになれ.qrc",
+    "lrc": "imports/omoi-yo-hitotsu/想いよひとつになれ.lrc",
+    "translation": "imports/omoi-yo-hitotsu/想いよひとつになれ.translation.lrc",
+    "romanization": "imports/omoi-yo-hitotsu/想いよひとつになれ.roma.lrc"
   },
   "unavailable_tracks": [],
-  "metadata_file": "/private/tmp/yomikana-omoi-qq/想いよひとつになれ.json"
+  "metadata_file": "imports/omoi-yo-hitotsu/想いよひとつになれ.json"
 }

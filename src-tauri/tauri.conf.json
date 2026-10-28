@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Yomikana",
+  "productName": "NumazuMusic",
   "version": "0.1.0",
-  "identifier": "cn.aqhours.yomikana",
+  "identifier": "cn.aqhours.numazumusic",
   "build": {
     "beforeDevCommand": "npm run desktop:dev",
     "devUrl": "http://127.0.0.1:1420",
@@ -13,14 +13,14 @@
     "macOSPrivateApi": true,
     "windows": [
       {
-        "label": "main", "title": "Yomikana",
+        "label": "main", "title": "NumazuMusic",
         "width": 1100, "height": 780, "minWidth": 760, "minHeight": 560,
         "decorations": true, "titleBarStyle": "Overlay", "hiddenTitle": true,
         "acceptFirstMouse": true,
         "backgroundThrottling": "disabled"
       },
       {
-        "label": "lyrics", "title": "Yomikana 悬浮歌词", "url": "index.html#/overlay",
+        "label": "lyrics", "title": "NumazuMusic 悬浮歌词", "url": "index.html#/overlay",
         "width": 420, "height": 120,
         "decorations": false, "transparent": true, "shadow": false,
         "alwaysOnTop": true, "visibleOnAllWorkspaces": true, "skipTaskbar": true,

@@ -12,7 +12,7 @@ export default function ThemeToggle() {
 
   const toggleTheme = () => {
     const nextTheme = theme === "dark" ? "light" : "dark";
-    try { localStorage.setItem("yomikana-theme", nextTheme); } catch { /* Theme still works without storage. */ }
+    try { localStorage.setItem("numazumusic-theme", nextTheme); } catch { /* Theme still works without storage. */ }
     document.documentElement.dataset.theme = nextTheme;
     document.documentElement.style.colorScheme = nextTheme;
     setTheme(nextTheme);

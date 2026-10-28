@@ -4,7 +4,7 @@ use std::path::{Path, PathBuf};
 use tauri::{Manager, WebviewWindow};
 
 fn validate_card(filename: &str, png: &[u8]) -> Result<(), String> {
-    if !filename.starts_with("yomikana-")
+    if !filename.starts_with("numazumusic-")
         || !filename.ends_with(".png")
         || filename.len() > 180
         || !filename
@@ -92,18 +92,18 @@ mod tests {
     #[test]
     fn rejects_paths_and_unbounded_images() {
         let mut png = png_header();
-        assert!(validate_card("yomikana-song-ja.png", &png).is_ok());
+        assert!(validate_card("numazumusic-song-ja.png", &png).is_ok());
         for name in [
             "../image.png",
-            "yomikana-../image.png",
-            "yomikana-x\\image.png",
-            "yomikana-song.txt",
+            "numazumusic-../image.png",
+            "numazumusic-x\\image.png",
+            "numazumusic-song.txt",
         ] {
             assert!(validate_card(name, &png).is_err());
         }
-        assert!(validate_card("yomikana-song.png", b"not a PNG").is_err());
+        assert!(validate_card("numazumusic-song.png", b"not a PNG").is_err());
         png[20..24].copy_from_slice(&9000_u32.to_be_bytes());
-        assert!(validate_card("yomikana-song.png", &png).is_err());
+        assert!(validate_card("numazumusic-song.png", &png).is_err());
     }
 
     #[test]
@@ -113,9 +113,9 @@ mod tests {
             .unwrap()
             .as_nanos();
         let directory =
-            std::env::temp_dir().join(format!("yomikana-card-{}-{id}", std::process::id()));
+            std::env::temp_dir().join(format!("numazumusic-card-{}-{id}", std::process::id()));
         std::fs::create_dir(&directory).unwrap();
-        let filename = "yomikana-song-zh.png";
+        let filename = "numazumusic-song-zh.png";
         std::fs::write(directory.join(filename), b"existing image").unwrap();
         let png = png_header();
         let first = save_in_directory(&directory, filename, &png).unwrap();

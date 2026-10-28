@@ -9,11 +9,11 @@
   "translation_timestamp": 1728987484,
   "romanization_timestamp": 1728972844,
   "files": {
-    "qrc": "/private/tmp/yomikana-bokura-qq/僕らの海でまた会おう.qrc",
-    "lrc": "/private/tmp/yomikana-bokura-qq/僕らの海でまた会おう.lrc",
-    "translation": "/private/tmp/yomikana-bokura-qq/僕らの海でまた会おう.translation.lrc",
-    "romanization": "/private/tmp/yomikana-bokura-qq/僕らの海でまた会おう.roma.lrc"
+    "qrc": "imports/bokura-no-umi/僕らの海でまた会おう.qrc",
+    "lrc": "imports/bokura-no-umi/僕らの海でまた会おう.lrc",
+    "translation": "imports/bokura-no-umi/僕らの海でまた会おう.translation.lrc",
+    "romanization": "imports/bokura-no-umi/僕らの海でまた会おう.roma.lrc"
   },
   "unavailable_tracks": [],
-  "metadata_file": "/private/tmp/yomikana-bokura-qq/僕らの海でまた会おう.json"
+  "metadata_file": "imports/bokura-no-umi/僕らの海でまた会おう.json"
 }

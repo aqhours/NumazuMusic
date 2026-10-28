@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-APP_DIR="${YOMIKANA_APP_DIR:-/opt/apps/yomikana}"
-BRANCH="${YOMIKANA_BRANCH:-main}"
-REMOTE="${YOMIKANA_REMOTE:-origin}"
-LOCK_FILE="${YOMIKANA_LOCK_FILE:-/run/aqhours-webhook/yomikana.lock}"
-LOCK_WAIT_SECONDS="${YOMIKANA_LOCK_WAIT_SECONDS:-900}"
-SITE_URL="${YOMIKANA_SITE_URL:-https://numazumusic.aqhours.cn/}"
-GITHUB_REPOSITORY="${YOMIKANA_GITHUB_REPOSITORY:-aqhours/yomikana}"
-FETCH_URL="${YOMIKANA_FETCH_URL:-https://github.com/${GITHUB_REPOSITORY}.git}"
-DEPLOYMENT_ENVIRONMENT="${YOMIKANA_DEPLOYMENT_ENVIRONMENT:-production}"
-DEPLOYMENT_REPORTER="${YOMIKANA_DEPLOYMENT_REPORTER:-/opt/deploy/github-deployment-status.sh}"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+APP_DIR="${NUMAZUMUSIC_APP_DIR:-$SCRIPT_DIR}"
+BRANCH="${NUMAZUMUSIC_BRANCH:-main}"
+REMOTE="${NUMAZUMUSIC_REMOTE:-origin}"
+LOCK_FILE="${NUMAZUMUSIC_LOCK_FILE:-/run/aqhours-webhook/numazumusic.lock}"
+LOCK_WAIT_SECONDS="${NUMAZUMUSIC_LOCK_WAIT_SECONDS:-900}"
+SITE_URL="${NUMAZUMUSIC_SITE_URL:-https://numazumusic.aqhours.cn/}"
+GITHUB_REPOSITORY="${NUMAZUMUSIC_GITHUB_REPOSITORY:-aqhours/NumazuMusic}"
+FETCH_URL="${NUMAZUMUSIC_FETCH_URL:-https://github.com/${GITHUB_REPOSITORY}.git}"
+DEPLOYMENT_ENVIRONMENT="${NUMAZUMUSIC_DEPLOYMENT_ENVIRONMENT:-production}"
+DEPLOYMENT_REPORTER="${NUMAZUMUSIC_DEPLOYMENT_REPORTER:-/opt/deploy/github-deployment-status.sh}"
 TARGET_COMMIT="${1:-${DEPLOY_SHA:-}}"
 deployment_id=""
 

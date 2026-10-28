@@ -9,11 +9,11 @@
   "translation_timestamp": 1700643657,
   "romanization_timestamp": 1626238968,
   "files": {
-    "qrc": "/Users/jiiong/Documents/ComputerScience/web-design-projects/yomikana/lyrics/未熟DREAMER.qrc",
-    "lrc": "/Users/jiiong/Documents/ComputerScience/web-design-projects/yomikana/lyrics/未熟DREAMER.lrc",
-    "translation": "/Users/jiiong/Documents/ComputerScience/web-design-projects/yomikana/lyrics/未熟DREAMER.translation.lrc",
-    "romanization": "/Users/jiiong/Documents/ComputerScience/web-design-projects/yomikana/lyrics/未熟DREAMER.roma.lrc"
+    "qrc": "lyrics/未熟DREAMER.qrc",
+    "lrc": "lyrics/未熟DREAMER.lrc",
+    "translation": "lyrics/未熟DREAMER.translation.lrc",
+    "romanization": "lyrics/未熟DREAMER.roma.lrc"
   },
   "unavailable_tracks": [],
-  "metadata_file": "/Users/jiiong/Documents/ComputerScience/web-design-projects/yomikana/lyrics/未熟DREAMER.json"
+  "metadata_file": "lyrics/未熟DREAMER.json"
 }

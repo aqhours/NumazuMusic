@@ -9,11 +9,11 @@
   "translation_timestamp": 1747164964,
   "romanization_timestamp": 1739012103,
   "files": {
-    "qrc": "/private/tmp/yomikana-sakura-qq-retry/SAKURA-saku KOKORO-saku.qrc",
-    "lrc": "/private/tmp/yomikana-sakura-qq-retry/SAKURA-saku KOKORO-saku.lrc",
-    "translation": "/private/tmp/yomikana-sakura-qq-retry/SAKURA-saku KOKORO-saku.translation.lrc",
-    "romanization": "/private/tmp/yomikana-sakura-qq-retry/SAKURA-saku KOKORO-saku.roma.lrc"
+    "qrc": "imports/sakura-saku-kokoro-saku/SAKURA-saku KOKORO-saku.qrc",
+    "lrc": "imports/sakura-saku-kokoro-saku/SAKURA-saku KOKORO-saku.lrc",
+    "translation": "imports/sakura-saku-kokoro-saku/SAKURA-saku KOKORO-saku.translation.lrc",
+    "romanization": "imports/sakura-saku-kokoro-saku/SAKURA-saku KOKORO-saku.roma.lrc"
   },
   "unavailable_tracks": [],
-  "metadata_file": "/private/tmp/yomikana-sakura-qq-retry/SAKURA-saku KOKORO-saku.json"
+  "metadata_file": "imports/sakura-saku-kokoro-saku/SAKURA-saku KOKORO-saku.json"
 }

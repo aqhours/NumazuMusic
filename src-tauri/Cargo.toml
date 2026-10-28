@@ -1,7 +1,7 @@
 [package]
-name = "yomikana"
+name = "numazumusic"
 version = "0.1.0"
-description = "Yomikana desktop lyric reader"
+description = "NumazuMusic desktop lyric reader"
 edition = "2021"
 
 [build-dependencies]

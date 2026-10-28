@@ -31,7 +31,7 @@ export default function WebPlayback({ initialTrack, queue }: { initialTrack: Web
       setAutoPlay(true);
       setTrack(nextTrack);
       window.history.replaceState(window.history.state, "", `/songs/${slug}`);
-      document.title = `${nextTrack.song.title}${nextTrack.song.titleAccent} · Yomikana`;
+      document.title = `${nextTrack.song.title}${nextTrack.song.titleAccent} · NumazuMusic`;
     } catch {
       if (!controller.signal.aborted) setError("切歌失败，请重试");
     } finally {

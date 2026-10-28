@@ -9,11 +9,11 @@
   "translation_timestamp": 1688142449,
   "romanization_timestamp": 1602660581,
   "files": {
-    "qrc": "/private/tmp/yomikana-kiseki-qq/キセキヒカル.qrc",
-    "lrc": "/private/tmp/yomikana-kiseki-qq/キセキヒカル.lrc",
-    "translation": "/private/tmp/yomikana-kiseki-qq/キセキヒカル.translation.lrc",
-    "romanization": "/private/tmp/yomikana-kiseki-qq/キセキヒカル.roma.lrc"
+    "qrc": "imports/kiseki-hikaru/キセキヒカル.qrc",
+    "lrc": "imports/kiseki-hikaru/キセキヒカル.lrc",
+    "translation": "imports/kiseki-hikaru/キセキヒカル.translation.lrc",
+    "romanization": "imports/kiseki-hikaru/キセキヒカル.roma.lrc"
   },
   "unavailable_tracks": [],
-  "metadata_file": "/private/tmp/yomikana-kiseki-qq/キセキヒカル.json"
+  "metadata_file": "imports/kiseki-hikaru/キセキヒカル.json"
 }

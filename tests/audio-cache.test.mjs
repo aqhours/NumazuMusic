@@ -18,7 +18,7 @@ function installBrowserMocks({ failWrites = false } = {}) {
 
   Object.defineProperty(globalThis, "window", {
     configurable: true,
-    value: { location: { href: "https://yomikana.test/songs/example" }, caches: { async open() { return cache; } } },
+    value: { location: { href: "https://numazumusic.test/songs/example" }, caches: { async open() { return cache; } } },
   });
   Object.defineProperty(globalThis, "navigator", {
     configurable: true,
