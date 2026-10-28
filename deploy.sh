@@ -80,7 +80,10 @@ git reset --hard "$TARGET_COMMIT"
 
 log "Building production image."
 mesh-proxy pull node:22-bookworm-slim
-mesh-proxy exec docker compose build --pull
+# Docker builds need explicit proxy arguments; the CLI environment alone does
+# not reach RUN instructions such as npm ci or the production font download.
+mesh-proxy exec docker compose build --pull \
+  --build-arg HTTP_PROXY --build-arg HTTPS_PROXY --build-arg NO_PROXY
 
 log "Starting production service."
 docker compose up -d --remove-orphans --no-build --wait --wait-timeout 120

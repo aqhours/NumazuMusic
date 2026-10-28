@@ -46,6 +46,8 @@ npm test
 
 生产环境运行在 `https://numazumusic.aqhours.cn`。旧域名 `https://yomikana.aqhours.cn` 保留路径和查询参数，以 308 跳转至新域名。推送到 `main` 后，GitHub webhook 会触发 `deploy.sh`，按该提交构建并更新服务。
 
+部署使用服务器的 Tailscale 内网代理拉取代码、镜像和构建依赖，代理节点需要在线。Docker 构建显式接收代理参数，确保容器内的依赖安装也使用代理。
+
 ## 专辑封面配色
 
 歌词背景使用 `node-vibrant` 提取封面的 Vibrant、DarkVibrant、LightVibrant、Muted、DarkMuted、LightMuted 六类颜色。配色保存于 `app/cover-palettes.json`，浏览器无需下载提色库或执行图片分析。
