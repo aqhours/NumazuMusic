@@ -1,8 +1,8 @@
 "use client";
 
-import { memo, useEffect, useEffectEvent, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useEffectEvent, useMemo, useRef, useState } from "react";
 import { listen } from "@tauri-apps/api/event";
-import { ArrowLeft, ArrowUpRight, ListRestart, Maximize, Minimize, MoreHorizontal, Moon, Pause, Play, Blend, SkipBack, SkipForward, Languages, Sun, X } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, ImagePlus, ListRestart, Maximize, Minimize, MoreHorizontal, Moon, Pause, Play, Blend, SkipBack, SkipForward, Languages, Sun, X } from "lucide-react";
 import ReaderBackground from "./reader-background";
 import { useAmllLowFreqVolume } from "./use-amll-low-freq-volume";
 import { loadAudio } from "./audio-cache";
@@ -10,6 +10,9 @@ import { useManualLyricScroll } from "./use-manual-lyric-scroll";
 import { useLyricEdgeSoftness } from "./use-lyric-edge-softness";
 import { useReaderFullscreen } from "./use-reader-fullscreen";
 import { useDesktopLyrics, type DesktopPlayback, type PlaybackAction } from "./desktop-lyrics";
+import DesktopWindowDrag from "./desktop-window-drag";
+import LyricCardEditor from "./lyric-card-editor";
+import type { CardLanguage } from "./lyric-card";
 
 import type { Word, LyricLine, Song, Timing, TimedCharacter, DisplayCharacter } from "./song-types";
 
@@ -166,6 +169,13 @@ const WordBlock = memo(function WordBlock({ word, lineIndex, wordIndex, currentM
 
 type WebPlaybackControls = DesktopPlayback & { canNext: boolean; status: string };
 
+const lyricDisplayModes = {
+  annotated: { label: "完整注音", next: "bilingual" },
+  bilingual: { label: "中日双语", next: "chinese" },
+  chinese: { label: "仅中文", next: "annotated" },
+} as const;
+type LyricDisplayMode = keyof typeof lyricDisplayModes;
+
 export default function SongReader({ song, coverColors, originalCover, desktopPlayback, webPlayback }: { song: Song; coverColors: string[]; originalCover?: string; desktopPlayback?: DesktopPlayback; webPlayback?: WebPlaybackControls }) {
   const playback = desktopPlayback ?? webPlayback;
   const lyrics = song.lyrics;
@@ -220,9 +230,14 @@ export default function SongReader({ song, coverColors, originalCover, desktopPl
   const [durationMs, setDurationMs] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [autoScroll, setAutoScroll] = useState(true);
-  const [showAnnotations, setShowAnnotations] = useState(true);
+  const [lyricDisplayMode, setLyricDisplayMode] = useState<LyricDisplayMode>("annotated");
+  const lyricDisplay = lyricDisplayModes[lyricDisplayMode];
+  const lyricDisplayLabel = `歌词显示：${lyricDisplay.label}，点击切换为${lyricDisplayModes[lyricDisplay.next].label}`;
   const [blurLyrics, setBlurLyrics] = useState(true);
   const [toolsOpen, setToolsOpen] = useState(false);
+  // Snapshot the song so automatic playback cannot replace an unfinished card.
+  const [cardExport, setCardExport] = useState<{ song: Song; coverColors: string[]; initialLanguage: CardLanguage } | null>(null);
+  const closeCardExport = useCallback(() => setCardExport(null), []);
   const toolsRef = useRef<HTMLDivElement>(null);
   const toolsToggleRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -367,7 +382,7 @@ export default function SongReader({ song, coverColors, originalCover, desktopPl
     resize.observe(line);
     if (last && last !== line) resize.observe(last);
     return () => { cancelAnimationFrame(restoreBlur); resize.disconnect(); };
-  }, [activeLine, autoScroll, readerOpen, lyrics.length, resumePlayback]);
+  }, [activeLine, autoScroll, readerOpen, lyrics.length, lyricDisplayMode, resumePlayback]);
   useEffect(() => () => {
     if (animationRef.current) cancelAnimationFrame(animationRef.current);
   }, []);
@@ -503,6 +518,7 @@ export default function SongReader({ song, coverColors, originalCover, desktopPl
     audioRef.current?.pause();
     setReaderOpen(false);
     setToolsOpen(false);
+    setCardExport(null);
     startRef.current?.focus({ preventScroll: true });
   };
   const toggleTheme = () => {
@@ -538,8 +554,9 @@ export default function SongReader({ song, coverColors, originalCover, desktopPl
       </header>
       <dialog ref={dialogRef} id="lyrics-dialog" className="reader-dialog" style={coverPalette} aria-label={`${song.title}${song.titleAccent} · 歌词阅读`} onClose={onReaderClosed} onCancel={(event) => { event.preventDefault(); if (document.fullscreenElement) { void document.exitFullscreen().catch(() => {}); } else { closeReader(); } }}>
       <div ref={fullscreenRef} className="reader-surface">
+      {desktopPlayback && <DesktopWindowDrag />}
       {readerOpen && <ReaderBackground album={song.cover} playing={isPlaying} lowFreqVolumeRef={lowFreqVolumeRef} />}
-      <section className="reader" data-lyric-font="sans" data-annotations={showAnnotations} data-lyric-blur={blurLyrics} id="lyrics" aria-label="歌词正文">
+      <section className="reader" data-lyric-font="sans" data-annotations={lyricDisplayMode === "annotated"} data-lyric-display={lyricDisplayMode} data-lyric-blur={blurLyrics} id="lyrics" aria-label="歌词正文">
         <div className={`player-bar${webPlayback ? " web-player-bar" : ""}`}>
           {/* The synchronized, translated lyric transcript is rendered directly below the audio control. */}
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
@@ -563,10 +580,11 @@ export default function SongReader({ song, coverColors, originalCover, desktopPl
           {webPlayback && <button ref={toolsToggleRef} className="reader-tools-toggle" type="button" aria-label="更多歌词功能" aria-expanded={toolsOpen} aria-controls="reader-tools" onClick={() => setToolsOpen((value) => !value)}><MoreHorizontal aria-hidden="true" /></button>}
           <div ref={toolsRef} id="reader-tools" className="reader-tools" data-open={toolsOpen} role="group" aria-label="歌词功能">
           <button className={`scroll-toggle${autoScroll ? " is-on" : ""}`} type="button" aria-label={autoScroll ? "关闭自动跟随" : "开启自动跟随"} title={autoScroll ? "自动跟随已开启" : "自动跟随已关闭"} aria-pressed={autoScroll} onClick={() => { closeToolsMenu(); setAutoScroll((value) => !value); }} data-umami-event={autoScroll ? "auto-follow-disable" : "auto-follow-enable"} data-umami-event-song={song.slug}><ListRestart aria-hidden="true" /><span className="reader-tool-label">自动跟随<span className="reader-tool-state">{autoScroll ? "开启" : "关闭"}</span></span></button>
-          <button className={`annotations-toggle${showAnnotations ? " is-on" : ""}`} type="button" aria-label={showAnnotations ? "隐藏罗马音和分词翻译" : "显示罗马音和分词翻译"} title={showAnnotations ? "隐藏罗马音和分词翻译" : "显示罗马音和分词翻译"} aria-pressed={showAnnotations} onClick={() => { closeToolsMenu(); setShowAnnotations((value) => !value); }}>
-            <Languages aria-hidden="true" /><span className="reader-tool-label">罗马音与释义<span className="reader-tool-state">{showAnnotations ? "显示" : "隐藏"}</span></span>
+          <button className={`annotations-toggle${lyricDisplayMode !== "bilingual" ? " is-on" : ""}`} type="button" aria-label={lyricDisplayLabel} title={lyricDisplayLabel} onClick={() => { closeToolsMenu(); setLyricDisplayMode((value) => lyricDisplayModes[value].next); }}>
+            {lyricDisplayMode === "chinese" ? <span className="lyric-display-character" aria-hidden="true">中</span> : <Languages aria-hidden="true" />}<span className="reader-tool-label">歌词显示<span className="reader-tool-state">{lyricDisplay.label}</span></span>
           </button>
           {webPlayback && <button className={`blur-toggle${blurLyrics ? " is-on" : ""}`} type="button" aria-label={blurLyrics ? "关闭歌词模糊" : "开启歌词模糊"} title={blurLyrics ? "歌词模糊已开启" : "歌词模糊已关闭"} aria-pressed={blurLyrics} onClick={() => { closeToolsMenu(); setBlurLyrics((value) => !value); }}><Blend aria-hidden="true" /><span className="reader-tool-label">歌词模糊<span className="reader-tool-state">{blurLyrics ? "开启" : "关闭"}</span></span></button>}
+          <button className="card-export-toggle" type="button" aria-label="导出歌词卡片" title="导出歌词卡片" aria-haspopup="dialog" onClick={() => { closeToolsMenu(); setCardExport({ song, coverColors, initialLanguage: lyricDisplayMode === "chinese" ? "zh" : "ja" }); }}><ImagePlus aria-hidden="true" /><span className="reader-tool-label">导出歌词卡片</span></button>
           <button className="fullscreen-toggle" type="button" onClick={() => { closeToolsMenu(); fullscreen.toggle(); }} disabled={!fullscreen.supported || fullscreen.pending} aria-label={fullscreen.isFullscreen ? "退出全屏" : "进入全屏"} aria-pressed={fullscreen.isFullscreen} title={!fullscreen.supported ? "当前浏览器不支持网页全屏" : fullscreen.isFullscreen ? "退出全屏（Esc）" : "进入全屏"}>
             {fullscreen.isFullscreen ? <Minimize aria-hidden="true" /> : <Maximize aria-hidden="true" />}<span className="reader-tool-label">{fullscreen.isFullscreen ? "退出全屏" : "进入全屏"}</span>
           </button>
@@ -605,6 +623,7 @@ export default function SongReader({ song, coverColors, originalCover, desktopPl
         </ol>
         </div>
       </section>
+      {readerOpen && cardExport && <LyricCardEditor {...cardExport} onClose={closeCardExport} />}
       </div>
       </dialog>
     </main>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Home from "../app/page";
 import SongReader from "../app/song-reader";
+import DesktopWindowDrag from "../app/desktop-window-drag";
 import { songs } from "../app/song-data";
 import palettes from "../app/cover-palettes.json";
 import thumbnails from "../app/cover-thumbnails.json";
@@ -42,9 +43,9 @@ function App() {
     });
   };
   const song = songs[session.route.replace(/^\/songs\//, "")];
-  if (!song) return <Home />;
+  if (!song) return <><DesktopWindowDrag /><Home /></>;
   const cover = (thumbnails as Record<string, Record<string, string>>)[song.cover]?.[256] ?? song.cover;
-  return <SongReader song={{ ...song, cover }} originalCover={song.cover} coverColors={(palettes as Record<string, string[]>)[song.cover] ?? []} desktopPlayback={{ autoPlay: session.autoPlay, canPrevious: Boolean(session.queue && session.queue.cursor > 0), onNext: () => changeTrack("next"), onPrevious: () => changeTrack("previous") }} />;
+  return <><DesktopWindowDrag /><SongReader song={{ ...song, cover }} originalCover={song.cover} coverColors={(palettes as Record<string, string[]>)[song.cover] ?? []} desktopPlayback={{ autoPlay: session.autoPlay, canPrevious: Boolean(session.queue && session.queue.cursor > 0), onNext: () => changeTrack("next"), onPrevious: () => changeTrack("previous") }} /></>;
 }
 
 createRoot(document.getElementById("root")!).render(location.hash === "#/overlay" ? <Overlay /> : <App />);

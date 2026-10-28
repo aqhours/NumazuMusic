@@ -194,7 +194,7 @@ h1 em { color:var(--sun); font-style:normal; }
 .start-link { appearance:none; background:none; color:var(--ink); font-family:inherit; border:0; cursor:pointer; padding:0; display:inline-flex; gap:1rem; align-items:center; margin-top:2.7rem; text-decoration:none; font-size:.82rem; letter-spacing:.12em; border-bottom:1px solid var(--ink); padding-bottom:.45rem; }
 .start-link svg { width:1rem; height:1rem; flex-shrink:0; color:var(--sun); stroke-width:1.8; }
 .reader { --player-gutter:clamp(1.5rem,4vw,3rem); --player-padding:clamp(1rem,3vw,2.25rem); --cover-size:4.25rem; --reader-inline:max(calc(var(--player-gutter) / 2 + var(--player-padding)),calc((100% - 72rem) / 2 + var(--player-padding))); display:grid; grid-template-rows:auto minmax(0,1fr); width:100%; height:100vh; height:100dvh; margin:0; overflow:hidden; scroll-margin-top:0; background:rgba(226,246,253,.66); border-radius:0; box-shadow:none; -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); }
-.player-bar { position:relative; z-index:5; display:grid; grid-template-columns:var(--cover-size) 2rem minmax(0,1fr) repeat(4,2rem); gap:.68rem; align-items:center; width:min(72rem,calc(100% - var(--player-gutter))); margin:clamp(.75rem,1.8vw,1.25rem) auto 0; padding:1.72rem var(--player-padding) 1.32rem; border:1px solid var(--rule); border-radius:1.15rem; background:transparent; box-shadow:0 8px 24px rgba(7,81,127,.07); }
+.player-bar { position:relative; z-index:5; display:grid; grid-template-columns:var(--cover-size) 2rem minmax(0,1fr) repeat(5,2rem); gap:.68rem; align-items:center; width:min(72rem,calc(100% - var(--player-gutter))); margin:clamp(.75rem,1.8vw,1.25rem) auto 0; padding:1.72rem var(--player-padding) 1.32rem; border:1px solid var(--rule); border-radius:1.15rem; background:transparent; box-shadow:0 8px 24px rgba(7,81,127,.07); }
 .song-page .player-bar { border-color:color-mix(in srgb,var(--ink) 10%,transparent); background:transparent; box-shadow:0 8px 24px rgba(7,81,127,.07); }
 .audio-player { display:none; }
 .transport-controls,.reader-tools { display:contents; }
@@ -329,7 +329,7 @@ rt { color:var(--sun); font:600 .5em/1.1 "Hiragino Sans",sans-serif; letter-spac
   .release-card-copy { padding:.75rem; }
   .release-card-copy h3 { font-size:.82rem; }
   .reader { --player-gutter:1rem; --player-padding:.8rem; --cover-size:3.75rem; border-radius:0; }
-  .player-bar { grid-template-columns:var(--cover-size) 1.9rem minmax(0,1fr) repeat(4,2rem); gap:.45rem; width:calc(100% - 1rem); margin:.5rem auto 0; padding:1.62rem var(--player-padding) 1.22rem; border-radius:.9rem; }
+  .player-bar { grid-template-columns:var(--cover-size) 1.9rem minmax(0,1fr) repeat(5,2rem); gap:.45rem; width:calc(100% - 1rem); margin:.5rem auto 0; padding:1.62rem var(--player-padding) 1.22rem; border-radius:.9rem; }
   .mini-cover { border-radius:.4rem; }
   .play-toggle,.scroll-toggle { width:1.9rem; height:1.9rem; }
   .timeline,.progress-slider { height:2.15rem; }
@@ -499,7 +499,7 @@ html .song-page .reader-dialog .player-bar {
   -webkit-backdrop-filter:none;
   backdrop-filter:none;
 }
-html .song-page .reader-dialog :is(.play-toggle,.track-toggle,.blur-toggle,.scroll-toggle,.annotations-toggle,.fullscreen-toggle,.reader-close) {
+html .song-page .reader-dialog :is(.play-toggle,.track-toggle,.blur-toggle,.scroll-toggle,.annotations-toggle,.card-export-toggle,.fullscreen-toggle,.reader-close) {
   display:grid;
   place-items:center;
   width:2rem;
@@ -513,7 +513,7 @@ html .song-page .reader-dialog :is(.play-toggle,.track-toggle,.blur-toggle,.scro
   color:rgba(255,255,255,.75);
   transition:color .15s ease,transform .15s ease;
 }
-html .song-page .reader-dialog :is(.play-toggle,.track-toggle,.blur-toggle,.scroll-toggle,.annotations-toggle,.fullscreen-toggle,.reader-close) svg {
+html .song-page .reader-dialog :is(.play-toggle,.track-toggle,.blur-toggle,.scroll-toggle,.annotations-toggle,.card-export-toggle,.fullscreen-toggle,.reader-close) svg {
   width:1.15rem;
   height:1.15rem;
   stroke-width:1.8;
@@ -522,9 +522,9 @@ html .song-page .reader-dialog :is(.play-toggle,.track-toggle,.blur-toggle,.scro
 html .song-page .reader-dialog :is(.scroll-toggle.is-on,.annotations-toggle.is-on,.blur-toggle.is-on) { color:#fff; }
 html .song-page .reader-dialog .mini-cover { box-shadow:none; }
 @media (hover:hover) and (pointer:fine) {
-  html .song-page .reader-dialog :is(.play-toggle,.track-toggle,.blur-toggle,.scroll-toggle,.annotations-toggle,.fullscreen-toggle,.reader-close):hover { background:none; color:#fff; }
+  html .song-page .reader-dialog :is(.play-toggle,.track-toggle,.blur-toggle,.scroll-toggle,.annotations-toggle,.card-export-toggle,.fullscreen-toggle,.reader-close):hover { background:none; color:#fff; }
 }
-html .song-page .reader-dialog :is(.play-toggle,.track-toggle,.blur-toggle,.scroll-toggle,.annotations-toggle,.fullscreen-toggle,.reader-close):active { transform:scale(.94); }
+html .song-page .reader-dialog :is(.play-toggle,.track-toggle,.blur-toggle,.scroll-toggle,.annotations-toggle,.card-export-toggle,.fullscreen-toggle,.reader-close):active { transform:scale(.94); }
 .reader-dialog .lyric-line { opacity:.76; filter:blur(2.4px); transition:opacity .42s var(--ease-out),filter .3s var(--ease-out); }
 .reader-dialog .lyric-line.is-active { opacity:1; filter:blur(0); }
 .reader-dialog .lyric-line:focus-within { filter:blur(0); }
@@ -614,7 +614,7 @@ html .song-page .reader-dialog .line-seek:hover:not(:disabled) { background:tran
     grid-row:1;
     align-self:center;
     justify-self:center;
-    grid-template-columns:repeat(5,minmax(0,1fr));
+    grid-template-columns:repeat(6,minmax(0,1fr));
     grid-template-rows:auto auto auto;
     gap:1.25rem .5rem;
     width:min(100%,clamp(12rem,calc(100dvh - 18rem),26rem));
@@ -652,13 +652,14 @@ html .song-page .reader-dialog .line-seek:hover:not(:disabled) { background:tran
   .reader-dialog .player-bar .song-meta strong { overflow-wrap:anywhere; }
   .reader-dialog .player-bar .song-meta span { font-size:.85rem; }
   .reader-dialog .player-bar .time-display { position:static; transform:none; font-size:.72rem; }
-  .reader-dialog .player-bar :is(.scroll-toggle,.annotations-toggle,.play-toggle,.fullscreen-toggle,.reader-close) { grid-row:3; justify-self:center; }
+  .reader-dialog .player-bar :is(.scroll-toggle,.annotations-toggle,.play-toggle,.card-export-toggle,.fullscreen-toggle,.reader-close) { grid-row:3; justify-self:center; }
   .reader-dialog .player-bar .scroll-toggle { grid-column:1; }
   .reader-dialog .player-bar .annotations-toggle { grid-column:2; }
   html .song-page .reader-dialog .player-bar .play-toggle { grid-column:3; width:2.75rem; height:2.75rem; }
   html .song-page .reader-dialog .player-bar .play-toggle svg { width:1.7rem; height:1.7rem; }
-  .reader-dialog .player-bar .fullscreen-toggle { grid-column:4; }
-  .reader-dialog .player-bar .reader-close { grid-column:5; }
+  .reader-dialog .player-bar .card-export-toggle { grid-column:4; }
+  .reader-dialog .player-bar .fullscreen-toggle { grid-column:5; }
+  .reader-dialog .player-bar .reader-close { grid-column:6; }
   .reader-dialog .player-bar .font-menu { top:auto; bottom:calc(100% + .75rem); left:0; right:auto; }
   .reader-dialog .lyrics-viewport { grid-column:2; grid-row:1; min-width:0; container-type:size; }
   /* The first row also establishes the automatic-follow anchor. */
@@ -675,10 +676,13 @@ html .song-page .reader-dialog .line-seek:hover:not(:disabled) { background:tran
 
 .annotations-toggle { cursor:pointer; }
 .annotations-toggle:focus-visible { outline:2px solid var(--sun); outline-offset:4px; }
+.lyric-display-character { font-size:1.15rem; font-weight:600; line-height:1; }
 
 .reader[data-annotations="false"] :is(.word-romaji,.word-meaning) { display:none; }
 .reader[data-annotations="false"] .word-block { grid-template-rows:auto; padding-bottom:0; }
 .reader[data-annotations="false"] .word-jp { padding-bottom:0; }
+.reader[data-lyric-display="chinese"] .word-strip { display:none; }
+.reader[data-lyric-display="chinese"] .translation { margin-top:0; font-size:clamp(1.85rem,3vw,2.25rem); line-height:1.5; }
 
 /* Both rows share a center axis, with the outer transport controls staggered. */
 html .song-page .reader-dialog .web-player-bar {
@@ -698,7 +702,7 @@ html .song-page .reader-dialog .web-player-bar {
 }
 .reader-dialog .web-player-bar .reader-tools {
   display:grid;
-  grid-template-columns:repeat(5,minmax(0,1fr));
+  grid-template-columns:repeat(6,minmax(0,1fr));
   align-items:center;
   grid-column:1 / -1;
   grid-row:3;

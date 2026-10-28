@@ -1,5 +1,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+mod lyric_card;
+
 use serde::{Deserialize, Serialize};
 use std::sync::Mutex;
 #[cfg(target_os = "macos")]
@@ -251,7 +253,8 @@ fn main() {
             current_lyrics,
             resize_overlay,
             set_overlay_visible,
-            set_overlay_locked
+            set_overlay_locked,
+            lyric_card::save_lyric_card
         ])
         .on_window_event(|window, event| {
             if window.label() == "main" && matches!(event, tauri::WindowEvent::Destroyed) {
