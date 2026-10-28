@@ -1902,6 +1902,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "numazumusic"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "tauri",
+ "tauri-build",
+]
+
+[[package]]
 name = "objc2"
 version = "0.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4419,15 +4428,6 @@ dependencies = [
  "quote",
  "syn 3.0.6",
  "synstructure",
-]
-
-[[package]]
-name = "numazumusic"
-version = "0.1.0"
-dependencies = [
- "serde",
- "tauri",
- "tauri-build",
 ]
 
 [[package]]
