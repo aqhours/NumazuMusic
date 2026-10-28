@@ -46,7 +46,7 @@ npm test
 
 生产环境运行在 `https://numazumusic.aqhours.cn`。旧域名 `https://yomikana.aqhours.cn` 保留路径和查询参数，以 308 跳转至新域名。推送到 `main` 后，GitHub webhook 会触发 `deploy.sh`，按该提交构建并更新服务。
 
-部署使用服务器的 Tailscale 内网代理拉取代码、镜像和构建依赖，代理节点需要在线。Docker 构建显式接收代理参数，确保容器内的依赖安装也使用代理。
+部署使用服务器的 Tailscale 内网代理拉取 GitHub 代码、Docker 镜像和构建所需的外部资源，代理节点需要在线。Docker 构建显式接收代理参数；npm 依赖通过腾讯云镜像 `https://mirrors.cloud.tencent.com/npm/` 直连下载，保留锁文件的版本和完整性校验。
 
 ## 专辑封面配色
 
