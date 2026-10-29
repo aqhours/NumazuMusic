@@ -19,8 +19,8 @@ export default function Home() {
       <section className="library-hero" aria-labelledby="library-title">
         <div className="library-hero-inner">
           <header className="library-heading">
-            <h1 id="library-title">聴いて、読んで、<br /><em>歌をひらく。</em></h1>
-            <p>在旋律里学习日语。</p>
+            <h1 id="library-title">Numazu<br />Music</h1>
+            <p><strong>你的心灵是否光芒闪耀？</strong></p>
           </header>
         </div>
       </section>

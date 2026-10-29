@@ -535,7 +535,7 @@ export default function SongReader({ song, coverColors, originalCover, desktopPl
         <div className="hero-shade" aria-hidden="true" />
         {/* vinext currently duplicates React when hydrating next/link in this client reader. */}
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a className="library-link" href="/" aria-label="返回歌词本"><ArrowLeft aria-hidden="true" /> <span>歌词本</span></a>
+        <a className="library-link" href="/" aria-label="返回主页"><ArrowLeft aria-hidden="true" /> <span>返回主页</span></a>
         <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={theme === "dark" ? "切换到浅色模式" : "切换到暗色模式"} title={theme === "dark" ? "浅色模式" : "暗色模式"} aria-pressed={theme === "dark"} data-umami-event="theme-change" data-umami-event-theme={theme === "dark" ? "light" : "dark"}>
           <Moon className="theme-icon theme-icon-moon" aria-hidden="true" />
           <Sun className="theme-icon theme-icon-sun" aria-hidden="true" />

@@ -13,7 +13,7 @@ a { color:inherit; }
 .library-hero { position:relative; z-index:1; display:grid; align-items:end; min-height:100vh; min-height:100svh; overflow:hidden; isolation:isolate; }
 .library-hero-inner { width:min(1180px,calc(100% - 4rem)); margin:0 auto; padding:clamp(7rem,17vh,11rem) 0 clamp(6.5rem,13vh,9rem); }
 .library-heading { margin:0; }
-.library-heading h1 { max-width:none; color:var(--ink); font-size:clamp(3.8rem,7.3vw,7.5rem); line-height:.98; text-shadow:0 2px 32px rgba(226,248,255,.48); }
+.library-heading h1 { max-width:none; color:var(--ink); font-family:"Arial Black","Avenir Next",Arial,sans-serif; font-size:clamp(3.8rem,7.3vw,7.5rem); font-weight:900; line-height:.98; letter-spacing:0; text-shadow:0 2px 32px rgba(226,248,255,.48); }
 .library-heading p { display:flex; align-items:center; gap:.9rem; max-width:25rem; margin:1.55rem 0 0 .15rem; color:var(--ink-soft); font-family:"Noto Serif SC","Songti SC",serif; font-size:clamp(.95rem,1.3vw,1.08rem); line-height:1.9; letter-spacing:.06em; }
 .library-heading p::before { content:""; flex:0 0 auto; width:2.5rem; height:1px; background:color-mix(in srgb,var(--sun) 62%,transparent); }
 .catalog-link { display:inline-flex; gap:.85rem; align-items:center; margin:2.5rem 0 0 clamp(2.75rem,7vw,6rem); padding:.72rem 1rem; border:1px solid rgba(255,255,255,.52); border-radius:999px; background:rgba(235,249,255,.56); box-shadow:0 10px 32px rgba(4,54,83,.12); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); color:var(--ink); font-size:.73rem; font-weight:600; letter-spacing:.08em; text-decoration:none; transition:transform .18s var(--ease-out),background-color .2s ease,border-color .2s ease; }
