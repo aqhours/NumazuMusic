@@ -1,6 +1,7 @@
 import { catalog } from "./song-catalog";
 import ThemeToggle from "./theme-toggle";
 import coverThumbnails from "./cover-thumbnails.json";
+import HomeScrollReveal, { HomeSongCard, HomeYearMarker } from "./home-scroll-reveal";
 
 const thumbnails = coverThumbnails as Record<string, Record<string, string>>;
 
@@ -13,7 +14,7 @@ const releaseTimeline = [...new Set(catalog.map((song) => song.releaseDate.slice
 
 export default function Home() {
   return (
-    <main className="library-page">
+    <HomeScrollReveal>
       <ThemeToggle />
 
       <section className="library-hero" aria-labelledby="library-title">
@@ -32,20 +33,20 @@ export default function Home() {
           <ol className="release-timeline-list">
             {releaseTimeline.map(({ year, songs }) => (
               <li className="release-year" key={year}>
-                <div className="release-year-marker">
+                <HomeYearMarker>
                   <time dateTime={year}>{year}</time>
                   <span aria-hidden="true" />
-                </div>
+                </HomeYearMarker>
                 <div className="release-year-songs">
-                  {songs.map((song) => (
-                    <a className="release-card" href={`/songs/${song.slug}`} key={song.slug} data-umami-event="song-open" data-umami-event-song={song.slug}>
+                  {songs.map((song, index) => (
+                    <HomeSongCard key={song.slug} slug={song.slug} delay={Math.min(index, 3) * 0.06}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={thumbnails[song.cover]?.[640] ?? song.cover} width="640" height="640" loading={song === catalog[0] ? "eager" : "lazy"} decoding="async" alt="" />
                       <div className="release-card-copy">
                         <h3>{song.title}</h3>
                         <p>{song.artist}</p>
                       </div>
-                    </a>
+                    </HomeSongCard>
                   ))}
                 </div>
               </li>
@@ -53,6 +54,6 @@ export default function Home() {
           </ol>
         </div>
       </section>
-    </main>
+    </HomeScrollReveal>
   );
 }

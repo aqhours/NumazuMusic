@@ -26,6 +26,7 @@
     "@applemusic-like-lyrics/fft": "0.2.2",
     "@tauri-apps/api": "^2.11.1",
     "lucide-react": "^1.37.0",
+    "motion": "14.7.1",
     "react": "19.2.6",
     "react-dom": "19.2.6"
   },
